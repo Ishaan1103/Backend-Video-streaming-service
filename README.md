@@ -34,8 +34,8 @@ This project is a backend system for a YouTube-like application that supports us
 - **Database:** MongoDB with Mongoose
 - **Authentication:** JSON Web Token (JWT)
 - **Message Broker (for future features):** RabbitMQ
-- **File Storage:** (e.g., AWS S3, local storage, etc.)
-- **Containerization:** Docker (for RabbitMQ and other services)
+- **File Storage:** (e.g., cloudinary, local storage, etc.)
+- **Containerization:** (for future features) Docker (for RabbitMQ and other services) 
 
 ## Installation
 
