@@ -60,7 +60,7 @@ This project is a backend system for a YouTube-like application that supports us
     ACCESS_TOKEN_SECERET = Your ACCESS_TOKEN_SECERET 
     ACCESS_TOKEN_EXPIRY = Your ACCESS_TOKEN_EXPIRY
     REFRESH_TOKEN_SECERET = Your REFRESH_TOKEN_SECERET
-    REFRESH_TOKEN_EXPIRY = Your REFRESH_TOKEN_EXPIRY(in numbers)
+    REFRESH_TOKEN_EXPIRY = Your REFRESH_TOKEN_EXPIRY //use numbers like 10d === 10days
     CLOUD_NAME= Your-Cloud-name
     API_KEY= Your_Api_Key-from-Cloudinary 
     API_SECERET= Your_Api_Seceret-from-Cloudinary
