@@ -1,4 +1,5 @@
 import {v2 as cloudinary} from "cloudinary"
+import { extractPublicId } from 'cloudinary-build-url'
 import fs from "fs"
 
 cloudinary.config({ 
@@ -21,4 +22,16 @@ const uploadOnCloudinary = async (localPath)=>{
     }
 }
 
-export {uploadOnCloudinary}
+const deleteOnCloudinary = async (url) => {
+    if (!url) {
+        return null
+    }
+    const publidId = extractPublicId(url)
+    await cloudinary.uploader.destroy(publidId,function(res){return res});
+
+}
+
+export {
+    uploadOnCloudinary,
+    deleteOnCloudinary
+}
