@@ -84,9 +84,9 @@ This will start the server, and the application will be available on `http://loc
 ### Auth
 | Method | Endpoint          | Description           | Protected |
 |--------|-------------------|-----------------------|-----------|
-| POST   | `/api/v1/auth/register` | Register a new user   | No        |
-| POST   | `/api/v1/auth/login`    | Login and get token   | No        |
-| POST   | `/api/v1/auth/logout`   | Logout user           | Yes       |
+| POST   | `/api/v1/user/register` | Register a new user   | No        |
+| POST   | `/api/v1/user/login`    | Login and get token   | No        |
+| POST   | `/api/v1/user/logout`   | Logout user           | Yes       |
 
 ### Videos (in-progress)
 | Method | Endpoint                | Description                       | Protected |
