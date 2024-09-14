@@ -82,11 +82,20 @@ This will start the server, and the application will be available on `http://loc
 ## API Endpoints
 
 ### Auth
-| Method | Endpoint          | Description           | Protected |
-|--------|-------------------|-----------------------|-----------|
-| POST   | `/api/v1/user/register` | Register a new user   | No        |
-| POST   | `/api/v1/user/login`    | Login and get token   | No        |
-| POST   | `/api/v1/user/logout`   | Logout user           | Yes       |
+| Method | Endpoint                       | Description                                  | Protected |
+|--------|--------------------------------|----------------------------------------------|-----------|
+| POST   | `/api/v1/user/register`        | Register a new user                          | No        |
+| POST   | `/api/v1/user/login`           | Login and get token                          | No        |
+| POST   | `/api/v1/user/logout`          | Logout user                                  | Yes       |
+| GET    | `/api/v1/user/refresh-token`   | EndPoint to Refresh all Tokens               | Yes       |
+| POST   | `/api/v1/user/change-password` | Change password from old to new              | Yes       |
+| GET    | `/api/v1/user/current-user`    | Give login user details                      | Yes       |
+| PATCH  | `/api/v1/user/update-account`  | Update user fullname and email               | Yes       |
+| PATCH  | `/api/v1/user/avatar`          | Change Avatar of the Login user              | Yes       |
+| PATCH  | `/api/v1/user/cover-image`     | Change Cover Image of the Login user         | Yes       |
+| GET    | `/api/v1/user/c/:username`     | Give channel details like subcribers and all | Yes       |
+| GET    | `/api/v1/user/history`         | Give watchHistory of login user              | Yes       |
+
 
 ### Videos (in-progress)
 | Method | Endpoint                | Description                       | Protected |

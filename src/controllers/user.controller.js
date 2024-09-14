@@ -4,6 +4,7 @@ import {User} from '../models/user.models.js'
 import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/coudinary.js"
 import {ApiResponse} from '../utils/apiResponse.js'
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 const generateAccessAndRefreshToken = async (userId)=>
 {
@@ -119,8 +120,8 @@ const loginUser = asyncHandler(async(req,res,)=>{
 const logoutUser = asyncHandler(async(req,res)=>{
     await User.findByIdAndUpdate(req.user._id,
         {
-            $set:{
-                refreshToken:undefined
+            $unset:{
+                refreshToken:1
             }
         },
         {
@@ -185,7 +186,7 @@ const refreshAccessToken = asyncHandler(async(req,res)=>{
 })
 
 const changeCurrentPassword = asyncHandler(async(req,res)=>{
-    const {oldPassword, newPassword } = req.body
+    const { oldPassword, newPassword } = req.body
     const user = await User.findById(req.user?._id)
     const verifyPassword = await user.isPasswordCorrect(oldPassword)
     if (!verifyPassword) {
@@ -348,15 +349,68 @@ const getUserChannelProfile = asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,channel[0],"User channel fetched Successfully"))
 })
 
+const getWatchHistory = asyncHandler(async(req,res)=>{
+    const user = await User.aggregate([
+        {
+            $match:{
+                _id: new mongoose.Types.ObjectId(req.user._id)
+            }
+        },
+        {
+            $lookup:{
+                from:"vedios",
+                localField:"watchHistory",
+                foreignField:"_id",
+                as:"watchHistory",
+                pipeline:[
+                    {
+                        $lookup:{
+                            from:"users",
+                            localField:"owner",
+                            foreignField:"_id",
+                            as:"owner",
+                            pipeline:[
+                                {
+                                    
+                                    $project:{
+                                        fullName: 1,
+                                        username: 1,
+                                        avatar: 1
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $addFields:{
+                            owner:{
+                                $first: "$owner"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ])
+    return res
+    .status(200)
+    .json(new ApiResponse(
+        200,
+        user[0].watchHistory,
+        "Watch History fetch successfully"
+    ))
+})
+
 export {
-    registerUser,// --done
-    loginUser,// --done
-    logoutUser, // --done
-    refreshAccessToken, // --done
-    changeCurrentPassword,
-    getCurrentUser,
-    updateAccountDetails,
-    updateUserAvatar,
-    updateUserCoverImage,
-    getUserChannelProfile
+    registerUser,// --done and checked
+    loginUser,// --done and checked
+    logoutUser, // --done and checked
+    refreshAccessToken, // --done and checked
+    changeCurrentPassword,// --done and checked
+    getCurrentUser,// --done and checked
+    updateAccountDetails,// --done and checked
+    updateUserAvatar,// --done and checked
+    updateUserCoverImage,// --done and checked
+    getUserChannelProfile,// --done and checked
+    getWatchHistory// --done and checked
     }
