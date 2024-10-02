@@ -9,7 +9,7 @@ const subscriptionSchema = new Schema({
         type:Schema.Types.ObjectId, // one to whom 'subscriber' is subscribing
         ref:"User"
     }
-},1
+},
 {
     timestamps:true
 })   

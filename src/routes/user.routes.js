@@ -42,7 +42,7 @@ router.route('/logout').post(
     VerifyJwt,
     logoutUser
 )
-router.route('/refresh-token').get(
+router.route('/refresh-token').post(
     refreshAccessToken
 )
 
