@@ -139,7 +139,7 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
         if (!channelList) {
             throw new ApiError(
                 400,
-                "Error while getting My subscribed List"
+                "Error while getting Your subscribed List"
             )
         }
         return res

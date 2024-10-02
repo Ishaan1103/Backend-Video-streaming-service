@@ -106,7 +106,7 @@ const getChannelStats = asyncHandler(async (req, res) => {
         totalSubs:totalSubs[0].totalSubscribers,
         totalLike:likedCount[0].totalLikes
     }
-    
+
     return res
     .status(200)
     .json(
@@ -140,6 +140,9 @@ const getChannelVideos = asyncHandler(async (req, res) => {
             }
         }
     ])
+    if (videos.length < 1) {
+        throw new ApiError(404,"Not able to find videos")
+    }
     return res
     .status(200)
     .json(
