@@ -77,7 +77,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
         if (!title || !description) {
             throw new ApiError(400,"Please fill title and description")
         }
-        const videoFileLocatPath = req?.files?.videoFile[0]?.path
+        const videoFileLocatPath = req?.files?.videofile[0]?.path
         if (!videoFileLocatPath) {
             throw new ApiError(400,"Video File not found")
         }
@@ -100,7 +100,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
         }
     
         const savedVideo = await Video.create({
-            videoFile:videoFile.url,
+            videofile:videoFile.url,
             thumbnail:thumbnail.url,
             title,
             description,
