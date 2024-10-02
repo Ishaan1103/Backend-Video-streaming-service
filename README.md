@@ -1,7 +1,4 @@
-# Backend YouTube Project
-
-
-- [Thanks To chai-aur-code](https://youtu.be/EH3vGeqeIAo?feature=shared)
+# Backend Video Streaming Project
 
 
 ## Table of Contents
